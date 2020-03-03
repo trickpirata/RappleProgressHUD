@@ -130,7 +130,7 @@ extension RappleActivityIndicatorView {
         }
         else {
             sharedInstance.textStyleVisible = false
-            
+            sharedInstance.backgroundView?.layer.removeAllAnimations()
             UIView.animate(withDuration: 0.5, animations: { () -> Void in
                 sharedInstance.backgroundView?.alpha = 0.0
                 sharedInstance.keyWindow.tintAdjustmentMode = .automatic
