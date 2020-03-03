@@ -130,12 +130,11 @@ extension RappleActivityIndicatorView {
         }
         else {
             sharedInstance.textStyleVisible = false
-            sharedInstance.backgroundView?.layer.removeAllAnimations()
-            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, delay: .nan, options: [.layoutSubviews, .allowAnimatedContent], animations: {
                 sharedInstance.backgroundView?.alpha = 0.0
                 sharedInstance.keyWindow.tintAdjustmentMode = .automatic
                 sharedInstance.keyWindow.tintColorDidChange()
-            }, completion: { (finished) -> Void in
+            }) { (completion) in
                 sharedInstance.clearUIs()
                 sharedInstance.backgroundView?.removeFromSuperview()
                 sharedInstance.backgroundView = nil
@@ -146,7 +145,7 @@ extension RappleActivityIndicatorView {
                     sharedInstance.textStyleVisible = false
                     sharedInstance.activityLable?.removeFromSuperview() // only text value is available
                 }
-            })
+            }
         }
         NotificationCenter.default.removeObserver(sharedInstance)
     }
