@@ -131,23 +131,19 @@ extension RappleActivityIndicatorView {
         else {
             sharedInstance.textStyleVisible = false
     
-            UIView.animate(withDuration: 0.5, animations: { () -> Void in
-                sharedInstance.backgroundView?.alpha = 0.0
-                sharedInstance.keyWindow.tintAdjustmentMode = .automatic
-                sharedInstance.keyWindow.tintColorDidChange()
-                sharedInstance.clearUIs()
-                sharedInstance.backgroundView?.removeFromSuperview()
-                sharedInstance.backgroundView = nil
-                sharedInstance.keyWindow.isUserInteractionEnabled = true
-                
-                if sharedInstance.attributes[RappleIndicatorStyleKey] as? String == RappleStyleText {
-                    sharedInstance.dotCount = 0
-                    sharedInstance.textStyleVisible = false
-                    sharedInstance.activityLable?.removeFromSuperview() // only text value is available
-                }
-            }, completion: { (finished) -> Void in
-                
-            })
+            sharedInstance.backgroundView?.alpha = 0.0
+            sharedInstance.keyWindow.tintAdjustmentMode = .automatic
+            sharedInstance.keyWindow.tintColorDidChange()
+            sharedInstance.clearUIs()
+            sharedInstance.backgroundView?.removeFromSuperview()
+            sharedInstance.backgroundView = nil
+            sharedInstance.keyWindow.isUserInteractionEnabled = true
+            
+            if sharedInstance.attributes[RappleIndicatorStyleKey] as? String == RappleStyleText {
+                sharedInstance.dotCount = 0
+                sharedInstance.textStyleVisible = false
+                sharedInstance.activityLable?.removeFromSuperview() // only text value is available
+            }
         }
         NotificationCenter.default.removeObserver(sharedInstance)
     }
